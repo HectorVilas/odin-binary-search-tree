@@ -13,6 +13,19 @@ class Tree {
 
     return root;
   }
+
+  insert(value) {
+    let currentLevel = this.root;
+    while (currentLevel !== null && value !== currentLevel.data) {
+      if (value < currentLevel.data) {
+        if (currentLevel.left === null) currentLevel.left = new Node(value);
+        currentLevel = currentLevel.left;
+      } else {
+        if (currentLevel.right === null) currentLevel.right = new Node(value);
+        currentLevel = currentLevel.right;
+      }
+    }
+  }
 }
 
 class Node {
@@ -42,4 +55,25 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
+console.log("\n\n • Array to binary tree:");
+prettyPrint(treeList.root);
+treeList.insert(10);
+console.log("\n\n • After inserting '10':");
+prettyPrint(treeList.root);
+treeList.insert(9);
+console.log("\n\n • After trying to insert '9' (already exists):");
+prettyPrint(treeList.root);
+treeList.insert(20);
+treeList.insert(30);
+treeList.insert(50);
+treeList.insert(60);
+treeList.insert(61);
+treeList.insert(62);
+treeList.insert(63);
+treeList.insert(64);
+treeList.insert(65);
+treeList.insert(70);
+treeList.insert(6);
+treeList.insert(2);
+console.log("\n\n • After inserting more values:");
 prettyPrint(treeList.root);

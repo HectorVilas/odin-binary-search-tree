@@ -80,7 +80,56 @@ Here's a visual representation of the tree:
 > ```
 >
 
+## methods
 
+### insert
+New values can be inserted on the binary tree. This method will find an appropiate position (left or right) to the new value, or just ignore it if already exists:
+```javascript
+insert(...values) {
+  values.forEach(value => {
+    let currentLevel = this.root;
+    while (currentLevel !== null && value !== currentLevel.data) {
+      if (values < currentLevel.data) {
+        if (currentLevel.left === null) currentLevel.left = new Node(value);
+        currentLevel = currentLevel.left;
+      } else {
+        if (currentLevel.right === null) currentLevel.right = new Node(value);
+        currentLevel = currentLevel.right;
+      }
+    }
+  });
+}
+```
+
+After adding some numbers, this is the result:
+```
+│                                                           ┌── 2
+│                                                       ┌── 6    
+│                                                   ┌── 70       
+│                                               ┌── 65
+│                                           ┌── 64
+│                                       ┌── 63
+│                                   ┌── 62
+│                               ┌── 61
+│                           ┌── 60
+│                       ┌── 50
+│                   ┌── 30
+│               ┌── 20
+│           ┌── 6345
+│       ┌── 324
+│   ┌── 67
+│   │   │   ┌── 23
+│   │   │   │   └── 10
+│   │   └── 9
+└── 8
+    │       ┌── 7
+    │   ┌── 5
+    └── 4
+        │   ┌── 3
+        └── 1
+```
+
+This method only adds values to the current tree, it won't balance it: another method will do this.
 <!--
 ```javascript
 

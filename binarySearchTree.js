@@ -14,17 +14,19 @@ class Tree {
     return root;
   }
 
-  insert(value) {
-    let currentLevel = this.root;
-    while (currentLevel !== null && value !== currentLevel.data) {
-      if (value < currentLevel.data) {
-        if (currentLevel.left === null) currentLevel.left = new Node(value);
-        currentLevel = currentLevel.left;
-      } else {
-        if (currentLevel.right === null) currentLevel.right = new Node(value);
-        currentLevel = currentLevel.right;
+  insert(...values) {
+    values.forEach(value => {
+      let currentLevel = this.root;
+      while (currentLevel !== null && value !== currentLevel.data) {
+        if (values < currentLevel.data) {
+          if (currentLevel.left === null) currentLevel.left = new Node(value);
+          currentLevel = currentLevel.left;
+        } else {
+          if (currentLevel.right === null) currentLevel.right = new Node(value);
+          currentLevel = currentLevel.right;
+        }
       }
-    }
+    });
   }
 }
 
@@ -63,17 +65,6 @@ prettyPrint(treeList.root);
 treeList.insert(9);
 console.log("\n\n • After trying to insert '9' (already exists):");
 prettyPrint(treeList.root);
-treeList.insert(20);
-treeList.insert(30);
-treeList.insert(50);
-treeList.insert(60);
-treeList.insert(61);
-treeList.insert(62);
-treeList.insert(63);
-treeList.insert(64);
-treeList.insert(65);
-treeList.insert(70);
-treeList.insert(6);
-treeList.insert(2);
+treeList.insert(20, 30, 50, 60, 61, 62, 63, 64, 65, 70, 6, 2);
 console.log("\n\n • After inserting more values:");
 prettyPrint(treeList.root);
